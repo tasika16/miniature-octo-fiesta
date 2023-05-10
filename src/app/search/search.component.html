@@ -1,0 +1,30 @@
+<mat-card>
+  <h1>Régens időjárás előrejelzés</h1>
+  <div>Add meg a települést</div>
+  <div>
+    <mat-form-field>
+      <mat-select [(value)]="selected_city.name">
+        <!-- TODO use the cities array to populate this select with options -->
+        <mat-option *ngFor="let city of cities" [value]="city.name">{{city.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="updateResults(selected_city)">Mutasd az időjárást</button>
+  </div>
+  <div>
+    <h1>{{selected_city.name}}</h1><!-- TODO this should match the selected city-->
+    <table>
+      <tr>
+        <th>Dátum</th>
+        <th>Idő</th>
+        <th>Várható hőmérséklet</th>
+      </tr>
+      <!-- TODO the table rows should come from the results property -->
+      <tr *ngFor="let result of results">
+        <td>{{result.date | date:'yyyy.MM.dd'}}</td>
+        <td>{{result.time | date:'hh:mm'}}</td>
+        <!-- TODO Temperature with custom pipe -->
+        <td>{{result.temp}} °C</td>
+      </tr>
+    </table>
+  </div>
+</mat-card>
