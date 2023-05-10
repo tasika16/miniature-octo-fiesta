@@ -1,16 +1,17 @@
 <mat-card>
   <h1>Régens időjárás előrejelzés</h1>
-  <div>Add meg a települést</div>
-  <div>
+  <div class="title">Add meg a települést</div>
+  <div class="control">
     <mat-form-field>
       <mat-select [(value)]="selected_city.name">
         <!-- TODO use the cities array to populate this select with options -->
+        <mat-option></mat-option>
         <mat-option *ngFor="let city of cities" [value]="city.name">{{city.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <button (click)="updateResults(selected_city)">Mutasd az időjárást</button>
   </div>
-  <div>
+  <div *ngIf="results.length > 0">
     <h1>{{selected_city.name}}</h1><!-- TODO this should match the selected city-->
     <table>
       <tr>

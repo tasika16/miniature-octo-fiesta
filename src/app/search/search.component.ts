@@ -20,8 +20,7 @@ export class SearchComponent implements OnInit {
   }
 
   public updateResults(city: City): void {
-    let results = this.service.getWeatherByCity(city);
     // TODO set results
-    this.results = results;
+    this.results = this.service.getWeatherByCity(city);
   }
 }
