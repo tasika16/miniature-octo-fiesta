@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchComponent } from "./search/search.component";
+import { DatePipe } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { SearchComponent } from "./search/search.component";
     MatSelectModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

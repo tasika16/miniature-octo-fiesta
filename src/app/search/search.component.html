@@ -20,8 +20,8 @@
       </tr>
       <!-- TODO the table rows should come from the results property -->
       <tr *ngFor="let result of results">
-        <td>{{result.date | date:'yyyy.MM.dd'}}</td>
-        <td>{{result.time | date:'hh:mm'}}</td>
+        <td>{{result.date}}</td>
+        <td>{{result.time}}</td>
         <!-- TODO Temperature with custom pipe -->
         <td>{{result.temp}} °C</td>
       </tr>
