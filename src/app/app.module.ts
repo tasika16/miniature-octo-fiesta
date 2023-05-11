@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchComponent } from "./search/search.component";
 import { DatePipe } from "@angular/common";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { DatePipe } from "@angular/common";
     MatProgressSpinnerModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

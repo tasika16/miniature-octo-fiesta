@@ -11,21 +11,44 @@
     </mat-form-field>
     <button (click)="updateResults(selected_city)">Mutasd az időjárást</button>
   </div>
-  <div *ngIf="results.length > 0">
+  <div *ngIf="dataSource">
     <h1>{{selected_city.name}}</h1><!-- TODO this should match the selected city-->
-    <table>
-      <tr>
-        <th>Dátum</th>
-        <th>Idő</th>
-        <th>Várható hőmérséklet</th>
-      </tr>
-      <!-- TODO the table rows should come from the results property -->
-      <tr *ngFor="let result of results">
-        <td class="date">{{result.date}}</td>
-        <td class="time">{{result.time}}</td>
-        <!-- TODO Temperature with custom pipe -->
-        <td class="temp">{{result.temp}} °C</td>
-      </tr>
+<!--    <table>-->
+<!--      <tr>-->
+<!--        <th>Dátum</th>-->
+<!--        <th>Idő</th>-->
+<!--        <th>Várható hőmérséklet</th>-->
+<!--      </tr>-->
+<!--      &lt;!&ndash; TODO the table rows should come from the results property &ndash;&gt;-->
+<!--      <tr *ngFor="let result of results">-->
+<!--        <td class="date">{{result.date}}</td>-->
+<!--        <td class="time">{{result.time}}</td>-->
+<!--        &lt;!&ndash; TODO Temperature with custom pipe &ndash;&gt;-->
+<!--        <td class="temp">{{result.temp}} °C</td>-->
+<!--      </tr>-->
+<!--    </table>-->
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Dátum</th>
+        <td mat-cell *matCellDef="let result">{{result.date}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="time">
+        <th mat-header-cell *matHeaderCellDef>Idő</th>
+        <td mat-cell *matCellDef="let result">{{result.time}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="temp">
+        <th mat-header-cell *matHeaderCellDef>Várható hőmérséklet</th>
+        <td mat-cell *matCellDef="let result">{{result.temp}} °C</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <mat-paginator
+      class="city-paginator"
+      (page)="handlePageEvent($event)"
+      aria-label="Lépjen tovább további adatokért"></mat-paginator>
   </div>
 </mat-card>
