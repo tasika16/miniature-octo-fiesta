@@ -31,6 +31,5 @@ export class SearchComponent {
     this.length = this.results.length
     this.dataSource.data = this.results;
     this.dataSource.paginator = this.paginator;
-
   }
 }
