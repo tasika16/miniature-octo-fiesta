@@ -93,3 +93,11 @@ table .mat-column-date, table .mat-column-time {
 table .mat-column-temp {
   font-weight: 500;
 }
+
+mat-paginator {
+  background-color: inherit;
+}
+
+::ng-deep mat-paginator .mat-paginator-container {
+  justify-content: center;
+}
