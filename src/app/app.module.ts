@@ -16,11 +16,13 @@ import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { SearchComponent } from "./search/search.component";
 import { AppComponent } from './app.component';
+import { WeatherDataComponent } from './weather-data/weather-data.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent
+    SearchComponent,
+    WeatherDataComponent
   ],
   imports: [
     AppRoutingModule,

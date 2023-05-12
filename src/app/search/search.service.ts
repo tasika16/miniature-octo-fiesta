@@ -16,8 +16,8 @@ export class SearchService {
   constructor(private datePipe :DatePipe) {
   }
 
-  public getWeatherByCity(city: City): WeatherRow[] {
-    let cityWeather = WEATHER_DATA.find(w => w.city === city.name);
+  public getWeatherByCity(city :string): WeatherRow[] {
+    let cityWeather = WEATHER_DATA.find(w => w.city === city);
     if (!cityWeather) {
       return [];
     }
