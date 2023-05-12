@@ -68,24 +68,36 @@ table {
   width: 100%;
   text-align: left;
   border-collapse: collapse;
+  background-color: inherit;
 }
 
 table tr {
   line-height: 2rem;
 }
 
-table th {
+table .mat-header-cell {
   border-bottom: 1.5px solid black;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 1em;
+  font-weight: bold;
 }
 
 table td {
   border-bottom: 1px solid black;
 }
 
-table .date, table .time {
-  width: 25%;
+table .mat-column-date, table .mat-column-time {
+  width: 30%;
 }
 
-table .temp {
+table .mat-column-temp {
   font-weight: 500;
+}
+
+mat-paginator {
+  background-color: inherit;
+}
+
+::ng-deep mat-paginator .mat-paginator-container {
+  justify-content: center;
 }
