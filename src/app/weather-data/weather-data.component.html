@@ -3,7 +3,7 @@
     <mat-icon fontIcon="play_arrow"></mat-icon>
   </button>
   <div *ngIf="dataSource">
-    <h1>{{selected_city}}</h1><!-- TODO this should match the selected city-->
+    <h1>{{selected_city}}</h1>
     <table mat-table [dataSource]="dataSource" *ngIf="dataSource.data.length > 0">
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef>Dátum</th>

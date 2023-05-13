@@ -52,6 +52,12 @@ table td {
   border-bottom: 1px solid black;
 }
 
+.mat-header-cell {
+  font-weight: 500;
+  font-size: 1.1em;
+  color: black;
+}
+
 table .mat-column-date, table .mat-column-time {
   width: 30%;
 }

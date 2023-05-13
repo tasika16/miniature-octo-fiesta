@@ -2,7 +2,23 @@
 // Every array item contains a week's worth of temperature data of a given city in such a way that
 // weatherData[0].hourly.["temperature_2m"][i] is the temperature data corresponding
 // to the timestamp in weatherData[0].hourly.time[i].
-
+export interface WeatherData {
+  elevation :number;
+  generationtime_ms :number;
+  hourly :{
+    temperature_2m :number[];
+    time :string[]
+  };
+  hourly_units :{
+    temperature_2m :string;
+    time :string;
+  };
+  latitude :number;
+  longitude :number;
+  timezone :string;
+  timezone_abbreviation :string;
+  utc_offset_seconds :number;
+}
 export const WEATHER_DATA = [
   {
     "city": "Budapest",

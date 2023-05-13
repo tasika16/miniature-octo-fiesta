@@ -1,8 +1,10 @@
 import { Injectable } from "@angular/core";
 import { DatePipe} from "@angular/common";
+import { map } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
 import { City } from "../data/cities";
-import { WEATHER_DATA } from "../data/weather";
+import { environment } from "../../environments/environment";
 
 export interface WeatherRow {
   date: string;
@@ -13,22 +15,26 @@ export interface WeatherRow {
 @Injectable({ providedIn: "root" })
 export class SearchService {
 
-  constructor(private datePipe :DatePipe) {
+  constructor(private http :HttpClient,private datePipe :DatePipe) {
   }
 
-  public getWeatherByCity(city :string): WeatherRow[] {
-    let cityWeather = WEATHER_DATA.find(w => w.city === city);
-    if (!cityWeather) {
-      return [];
-    }
-    // TODO assemble results based on input city
-    //
-    return cityWeather!.hourly!.time!.map((time, idx) => {
-      return {
-        date: this.datePipe.transform(time, 'yyyy.MM.dd') || 'Nincs adat',
-        time: this.datePipe.transform(time, 'hh:mm') || 'Nincs adat',
-        temp: cityWeather!.hourly.temperature_2m[idx]
-      }
-    });
+  public getWeatherByCity(city :City) {
+    const url =
+      `${environment.weather_api_url_base}latitude=${city.latitude}` +
+      `&longitude=${city.longitude}&hourly=temperature_2m`
+    return this.http.get<WeatherRow[]>(url).pipe(
+      map((data :any) => {
+        if (!data) {
+          console.log('üres adat')
+        }
+        return data.hourly.time.map((time :string, idx :number) => {
+          return {
+            date: this.datePipe.transform(time, 'yyyy.MM.dd') || 'Nincs adat!',
+            time: this.datePipe.transform(time, 'hh:mm') || 'Nincs adat!',
+            temp: data.hourly.temperature_2m[idx]
+          }
+        });
+      })
+    )
   }
 }

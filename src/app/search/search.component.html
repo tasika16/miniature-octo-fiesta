@@ -6,10 +6,12 @@
       <mat-select [(value)]="selected_city">
         <!-- TODO use the cities array to populate this select with options -->
         <mat-option></mat-option>
-        <mat-option *ngFor="let city of cities" [value]="city.name">{{city.name}}</mat-option>
+        <mat-option *ngFor="let city of cities" [value]="city.name">
+          {{city.name}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
-    <button (click)="goToWeatherData(selected_city)" [disabled]="!selected_city">
+    <button (click)="goToWeatherData()" [disabled]="!selected_city">
       Mutasd az időjárást
     </button>
   </div>
