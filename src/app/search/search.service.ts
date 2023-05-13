@@ -33,7 +33,7 @@ export class SearchService {
             time: this.datePipe.transform(time, 'hh:mm') || 'Nincs adat!',
             temp: data.hourly.temperature_2m[idx]
           }
-        })
+        });
       })
     )
   }
