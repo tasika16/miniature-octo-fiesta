@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SearchService, WeatherRow } from "../search/search.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Subscription } from 'rxjs';
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
+
 import { CITIES, City } from "../data/cities";
 
 @Component({
@@ -15,6 +17,7 @@ export class WeatherDataComponent implements OnInit {
   results :WeatherRow[] = [];
   selected_city :string;
   cities :City[] = CITIES;
+  resultSubscription? :Subscription;
 
   length :number = 10;
   displayedColumns :string[] = [ 'date', 'time', 'temp' ]
@@ -35,7 +38,7 @@ export class WeatherDataComponent implements OnInit {
     if (!city) {
       console.log('Nincs ilyen nevű város!');
     } else {
-      this.service.getWeatherByCity(city).subscribe({
+      this.resultSubscription = this.service.getWeatherByCity(city).subscribe({
         next: (data :any) => {
           this.results = data;
           this.selected_city = city.name;
@@ -49,5 +52,9 @@ export class WeatherDataComponent implements OnInit {
 
   backToSearch() {
     this.router.navigate(['']);
+  }
+
+  ngOnDestroy() {
+    this.resultSubscription?.unsubscribe();
   }
 }
