@@ -22,7 +22,8 @@ export class WeatherDataComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator :MatPaginator;
 
-  constructor(private route :ActivatedRoute, private router :Router, private service :SearchService) { }
+  constructor(private route :ActivatedRoute, private router :Router,
+              private service :SearchService) { }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

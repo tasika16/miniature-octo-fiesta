@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { CITIES, City } from "../data/cities";
 import { SearchService } from "./search.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: "search",
@@ -12,13 +12,11 @@ import {Router} from "@angular/router";
 export class SearchComponent {
 
   cities :City[] = CITIES;
-  // selected_city :City = this.cities[0];
   selected_city :string;
 
-  constructor(private rouuter :Router, private service :SearchService) {
-  }
+  constructor(private rouuter :Router, private service :SearchService) {}
 
-  public goToWeatherData(city :string): void {
+  public goToWeatherData(): void {
     this.rouuter.navigate(['weather-data', { city: this.selected_city }]);
   }
 }
