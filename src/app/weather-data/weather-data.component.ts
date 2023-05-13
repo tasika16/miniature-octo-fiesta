@@ -3,6 +3,7 @@ import { SearchService, WeatherRow } from "../search/search.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
+import { CITIES, City } from "../data/cities";
 
 @Component({
   selector: 'app-weather-data',
@@ -13,6 +14,7 @@ export class WeatherDataComponent implements OnInit {
 
   results :WeatherRow[] = [];
   selected_city :string;
+  cities :City[] = CITIES;
 
   length :number = 10;
   displayedColumns :string[] = [ 'date', 'time', 'temp' ]
@@ -28,14 +30,19 @@ export class WeatherDataComponent implements OnInit {
 
   ngOnInit(): void {
     const param = this.route.snapshot.paramMap.get('city');
-    if (param == null) {
+    const city = this.cities.find(c => c.name === param);
+    if (!city) {
       console.log('Nincs ilyen nevű város!');
     } else {
-      this.results = this.service.getWeatherByCity(param);
-      this.selected_city = param;
-      this.length = this.results.length;
-      this.dataSource.data = this.results;
-      this.dataSource.paginator = this.paginator;
+      this.service.getWeatherByCity(city).subscribe({
+        next: (data :any) => {
+          this.results = data;
+          this.selected_city = city.name;
+          this.length = this.results.length;
+          this.dataSource.data = this.results;
+          this.dataSource.paginator = this.paginator;
+        }
+      });
     }
   }
 
